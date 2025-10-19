@@ -1,0 +1,171 @@
+
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Khushi - Memories</title>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#fff6f8;
+    --bg2:#fff1ea;
+    --accent:#d63b6a;
+    --paper:#fffdf9;
+    --muted:#7a6b6b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;margin:0;font-family:Montserrat,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#222;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .topbar{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:center;z-index:9999}
+  .btn{background:linear-gradient(90deg,#ff7aa0,#ff3b7a);padding:10px 18px;border-radius:28px;color:white;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(255,90,135,0.16)}
+  .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px 16px}
+  .content{width:100%;max-width:900px}
+  /* envelope */
+  .env{width:92vw;max-width:680px;margin:18px auto;position:relative}
+  .envelope{background:linear-gradient(180deg,#ffdfe8,#fff0f4);border-radius:16px;box-shadow:0 30px 70px rgba(198,59,106,0.12);position:relative;overflow:hidden;padding-bottom:20px}
+  .flap{position:absolute;left:50%;transform:translateX(-50%);top:-8vw;width:0;height:0;border-left:36vw solid transparent;border-right:36vw solid transparent;border-bottom:24vw solid var(--accent);border-radius:8px;transform-origin:top center;transition:transform .9s cubic-bezier(.2,.9,.3,1)}
+  .seal{position:absolute;left:50%;transform:translateX(-50%);top:28vw;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff7fb,#ffd1e0);display:flex;align-items:center;justify-content:center;font-weight:900;color:#9b143f;border:4px solid rgba(255,255,255,0.6);box-shadow:0 10px 26px rgba(178,27,74,0.12)}
+  .paper{background:linear-gradient(180deg,#fffdf9,#fffaf6);border-radius:10px;margin:20px;box-shadow:0 14px 36px rgba(0,0,0,0.06);padding:22px;transform:translateY(220%);opacity:0;transition:transform 1s cubic-bezier(.2,.9,.3,1),opacity .6s}
+  .paper.open{transform:translateY(0);opacity:1}
+  .paper h2{font-family:'Shadows Into Light',cursive;margin:0;color:var(--accent);font-size:28px}
+  .paper p{margin-top:12px;color:#333;white-space:pre-line;line-height:1.6;font-size:16px}
+  .hint{text-align:center;color:var(--muted);font-size:13px;margin-top:8px}
+  /* photos area */
+  .photos{margin:28px auto;max-width:860px}
+  .photo{width:100%;border-radius:12px;overflow:hidden;margin:18px 0;transform:translateY(20px);opacity:0;transition:transform .9s ease,opacity .9s ease}
+  .photo img{width:100%;display:block;height:auto;object-fit:cover}
+  /* hearts */
+  .hearts{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .heart{position:absolute;color:#ff8fb1;opacity:0.12;font-size:28px;animation:float 10s linear infinite}
+  @keyframes float{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-900px) rotate(180deg)}}
+  /* responsive tweaks */
+  @media (max-width:460px){
+    .flap{border-left:40vw solid transparent;border-right:40vw solid transparent;border-bottom:26vw solid var(--accent);top:-10vw}
+    .seal{top:34vw;width:72px;height:72px}
+    .paper h2{font-size:6vw}
+    .paper p{font-size:3.8vw}
+  }
+</style>
+</head>
+<body>
+<audio id="bg" src="music.mp3" preload="auto"></audio>
+
+<div class="topbar"><button id="openMem" class="btn">Memories</button></div>
+
+<div class="stage">
+  <div class="content">
+    <div class="env" id="env">
+      <div class="envelope" id="envelope">
+        <div class="flap" id="flap"></div>
+        <div class="seal" id="seal">Kh</div>
+        <div class="paper" id="paper">
+          <h2>For Khushi 💌</h2>
+          <p id="note">Khushi, first of all thanks for being mine for your whole life.
+Aap hamesa esa he mere sath rhna kitne bhi ladai kro jo mn mai aaye kro, buss sath rho.
+
+Aur hamesa ye yaad rkhna mai ldta hu, chillata hu laken pyaar bhi bhout zayda krta hu.
+
+I love you sooo sooo sooo much 💞
+
+— From Kitya</p>
+        </div>
+      </div>
+      <div class="hint">Tap the envelope to open the letter. Music will play when the letter opens.</div>
+    </div>
+
+    <div class="photos" id="photos">
+      <div class="photo"><img src="baby.jpg" alt="photo1"></div>
+      <div class="photo"><img src="couple1.jpg" alt="photo2"></div>
+      <div class="photo"><img src="selfie1.jpg" alt="photo3"></div>
+      <div class="photo"><img src="selfie2.jpg" alt="photo4"></div>
+      <div class="photo"><img src="garden.jpg" alt="photo5"></div>
+      <div class="photo"><img src="bw1.jpg" alt="photo6"></div>
+      <div class="photo"><img src="bw2.jpg" alt="photo7"></div>
+      <div class="photo"><img src="portrait.jpg" alt="photo8"></div>
+    </div>
+  </div>
+</div>
+
+<div class="hearts" aria-hidden="true">
+  <div class="heart" style="left:12%;bottom:8%;">❤</div>
+  <div class="heart" style="left:28%;bottom:4%;">❤</div>
+  <div class="heart" style="left:50%;bottom:6%;">❤</div>
+  <div class="heart" style="left:72%;bottom:3%;">❤</div>
+</div>
+
+<script>
+const openMem = document.getElementById('openMem');
+const flap = document.getElementById('flap');
+const envelope = document.getElementById('envelope');
+const paper = document.getElementById('paper');
+const bg = document.getElementById('bg');
+const photos = document.querySelectorAll('.photo');
+
+let memRevealed = false;
+let letterOpen = false;
+
+// Reveal the envelope area (just a gentle focus) when Memories clicked
+openMem.addEventListener('click', async () => {
+  if(memRevealed) return;
+  openMem.disabled = true;
+  // small pulse then reveal (no heavy curtain)
+  envelope.style.transform = 'scale(1.02)';
+  await new Promise(r => setTimeout(r, 400));
+  envelope.style.transform = '';
+  document.getElementById('env').scrollIntoView({behavior:'smooth', block:'center'});
+  memRevealed = true;
+  openMem.textContent = 'Memories • Ready';
+  openMem.disabled = false;
+});
+
+// Open/close letter on envelope tap
+envelope.addEventListener('click', async () => {
+  if(!memRevealed) return;
+  if(!letterOpen){
+    flap.style.transform = 'rotateX(180deg)';
+    paper.classList.add('open');
+    // play music
+    try{ bg.currentTime = 0; await bg.play(); }catch(e){}
+    letterOpen = true;
+    // reveal photos as user scrolls (setup observer)
+    setupObserver();
+  } else {
+    flap.style.transform = '';
+    paper.classList.remove('open');
+    try{ bg.pause(); }catch(e){}
+    letterOpen = false;
+  }
+});
+
+// IntersectionObserver for photos fade-in on scroll
+function setupObserver(){
+  const options = {root:null, rootMargin:'0px', threshold:0.25};
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.opacity = '1';
+        obs.unobserve(entry.target);
+      }
+    });
+  }, options);
+  photos.forEach(p => observer.observe(p));
+}
+
+// Fit text size to paper to avoid overflow
+function fitText(){
+  const p = document.getElementById('note');
+  const paperEl = document.getElementById('paper');
+  let fs = 16;
+  p.style.fontSize = fs + 'px';
+  while(p.scrollHeight > paperEl.clientHeight && fs > 12){
+    fs -= 0.5;
+    p.style.fontSize = fs + 'px';
+  }
+}
+window.addEventListener('load', fitText);
+window.addEventListener('resize', fitText);
+
+</script>
+</body>
+</html>
